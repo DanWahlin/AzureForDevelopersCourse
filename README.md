@@ -37,7 +37,7 @@ Perform the following tasks to run the Key Vault demo:
 
 ### VS Code
 
-1. Open the project folder in VS Code
+1. Open the project `webapp` folder in VS Code
 1. Open a command prompt at the root and run the following command to trust dev certs:
 
     `dotnet dev-certs https --trust`

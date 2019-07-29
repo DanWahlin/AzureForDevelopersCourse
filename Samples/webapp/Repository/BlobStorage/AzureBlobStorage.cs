@@ -16,7 +16,7 @@ namespace AzureForDevelopersCourse.Repository.BlobStorage
         {
             Settings = settings;
         }
-        
+
         public async Task UploadAsync(string containerName, string blobName, string filePath)
         {
             //Blob
@@ -57,7 +57,7 @@ namespace AzureForDevelopersCourse.Repository.BlobStorage
         {
             //Blob
             CloudBlockBlob blockBlob = await GetBlockBlobAsync(containerName, blobName);
-            
+
             //Download
             await blockBlob.DownloadToFileAsync(path, FileMode.Create);
         }
@@ -154,8 +154,8 @@ namespace AzureForDevelopersCourse.Repository.BlobStorage
             BlobContinuationToken token = null;
             do
             {
-                BlobResultSegment resultSegment =
-                    await blobContainer.ListBlobsSegmentedAsync("", useFlatListing, new BlobListingDetails(), null, token, null, null);
+                BlobResultSegment resultSegment = await blobContainer.ListBlobsSegmentedAsync(
+                    "", useFlatListing, new BlobListingDetails(), null, token, null, null);
                 token = resultSegment.ContinuationToken;
 
                 foreach (IListBlobItem item in resultSegment.Results)

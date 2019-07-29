@@ -1,5 +1,7 @@
 ## Running the Samples
 
+These samples are for the Azure for Developers instructor-led course - https://codewithdan.com/products/azure-for-developers.
+
 Perform the following steps:
 
 ## Create Azure Resources

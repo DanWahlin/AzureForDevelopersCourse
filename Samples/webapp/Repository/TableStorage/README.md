@@ -1,4 +1,4 @@
-### Create Azure Resources
+### Create Table Storage
 
 1. Create a new Storage Account in Azure if you don't already have one created.
 1. Add a Storage Table named `customers`

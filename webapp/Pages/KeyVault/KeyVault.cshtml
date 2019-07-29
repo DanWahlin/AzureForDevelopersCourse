@@ -1,0 +1,21 @@
+@page
+@model KeyVaultModel
+@{
+    ViewData["Title"] = "Table Storage";
+}
+
+<h1>Secret Value: @Model.Secret</h1>
+
+<br />
+Note: Make sure you do the following:
+
+<ol>
+    <li>Create a Key Vault named <strong>AzureForDevsKeyVault</strong> in a Resource Group of your choosing. Allow all networks to access it.</li>
+    <li>Add a secret named <strong>AppSecret</strong> into the new key vault and give it any value</li>
+    <li>Create a Web App in Azure and deploy this application to it. You'll need to publish the app if 
+        running outside of Visual Studio by running "dotnet build" and "dotnet publish" and then publish the <strong>bin/Debug/netcoreappx.x/publish</strong> folder to the Web App. 
+        The Azure Tools VS Code extension can help with this.</li>
+    <li>Go into the Web App in the Azure Portal, select <strong>Identity</strong>, and turn on the <strong>System assigned</strong> option.</li>
+    <li>Go to the Key Vault, select <strong>Access Policies</strong>, and <strong>add an access policy</strong>. Select your Web App as the principal and give the 
+    <strong>Secret permissions</strong> section <strong>Get</strong>> and <strong>List</strong>> privileges.</li>
+</ol>

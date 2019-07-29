@@ -1,0 +1,21 @@
+﻿@page
+@model ServiceBusModel
+@{
+    ViewData["Title"] = "Service Bus";
+}
+<h2>Add a Message to Service Bus</h2>
+<form method="post">
+  <div asp-validation-summary="All" class="text-danger"></div>
+  <div class="form-group">
+    <label for="message">Message</label>
+    <input type="text" class="form-control" id="message" asp-for="MessageValue">
+  </div>
+  <input type="submit" value="Add" class="btn btn-primary" />
+</form>
+
+@if (Model.StatusMessage != null) {
+  <br />
+  <div class="alert alert-success">
+    @Model.StatusMessage
+  </div>
+}

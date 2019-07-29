@@ -1,0 +1,34 @@
+@page
+@model BlobStorageModel
+@{
+    ViewData["Title"] = "Blob Storage";
+}
+<h1>Blobs</h1>
+<table>
+    @foreach(var blob in Model.Blobs) {
+        <tr>
+            <td>@blob.BlobName</td>
+            <td><a class="btn btn-danger" asp-page-handler="DeleteBlob" asp-route-blobName="@blob.BlobName">X</a></td>
+        </tr>
+    }
+</table>
+
+@if (Model.Blobs == null || Model.Blobs.Count == 0) {
+  <br />
+  <h4>No blobs found</h4>
+}
+
+<br /><br />
+<h2>Add Blob</h2>
+
+<form method="post" enctype="multipart/form-data">
+  <div asp-validation-summary="All" class="text-danger"></div>
+  <div class="form-group">
+    <label for="folder">Folder</label>
+    <input type="text" name="folder" id="folder" asp-for="FileUpload.Folder">
+  </div>
+  <div class="form-group"> 
+    <input type="file" class="form-control" id="file" asp-for="FileUpload.File">
+  </div>
+  <input type="submit" value="Upload File" class="btn btn-primary">
+</form>

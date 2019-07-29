@@ -1,0 +1,49 @@
+﻿@page
+@model QueuesStorageModel
+@{
+    ViewData["Title"] = "Queues Storage";
+}
+
+<h1>Queue Messages</h1>
+<table>
+    <tr>
+      <th>Id</th>
+      <th>Value</th>
+    </tr>
+    @foreach(var message in Model.Messages) {
+        <tr>
+            <td>@message.Id</td>
+            <td>@message.AsString</td>
+        </tr>
+    }
+</table>
+<br /><br />
+<a class="btn btn-success" asp-page-handler="GetMessage">Get Message and Delete</a>
+@if (Model.Message != null) {
+  <br /><br />
+  <h2>Message</h2>
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Pop Receipt</th>
+      <th>Value</th>
+    </tr>
+    <tr>
+        <td>@Model.Message.Id</td>
+        <td>@Model.Message.PopReceipt</td>
+        <td>@Model.Message.AsString</td>
+    </tr>
+  </table>
+}
+
+
+<br /><br />
+<h2>Add Message</h2>
+<form method="post">
+  <div asp-validation-summary="All" class="text-danger"></div>
+  <div class="form-group">
+    <label for="message">Message</label>
+    <input type="text" class="form-control" id="message" asp-for="MessageValue">
+  </div>
+  <input type="submit" value="Add" class="btn btn-primary" />
+</form>

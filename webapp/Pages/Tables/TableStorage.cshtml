@@ -1,0 +1,49 @@
+﻿@page
+@model TableStorageModel
+@{
+    ViewData["Title"] = "Table Storage";
+}
+
+<h1>Customers</h1>
+<table>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>&nbsp;</th>
+    </tr>
+    @foreach(var customer in Model.Customers) {
+        <tr>
+            <td>@customer.FirstName</td>
+            <td>@customer.LastName</td>
+            <td><a class="btn btn-danger" asp-page-handler="DeleteCustomer" asp-route-partitionKey="@customer.PartitionKey" 
+                asp-route-rowKey="@customer.RowKey">X</a></td>
+        </tr>
+    }
+</table>
+
+<br /><br />
+<h2>Add Customer</h2>
+<form method="post">
+  <div asp-validation-summary="All" class="text-danger"></div>
+  <div class="form-group">
+    <label for="partitionKey">Region</label>
+    <select class="form-control" id="partitionKey" asp-for="InsertedCustomer.PartitionKey">
+        <option value="">Select One:</option>
+        <option value="southwest">South West</option>
+        <option value="southeast">South East</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <input type="text" class="form-control" id="firstName" asp-for="InsertedCustomer.FirstName">
+  </div>
+  <div class="form-group">
+    <label for="lastName">Last Name</label>
+    <input type="text" class="form-control" id="lastName" asp-for="InsertedCustomer.LastName">
+  </div>
+  <div class="form-group">
+    <label for="city">City</label>
+    <input type="text" class="form-control" id="city" asp-for="InsertedCustomer.City">
+  </div>
+  <input type="submit" value="Create" class="btn btn-primary" />
+</form>

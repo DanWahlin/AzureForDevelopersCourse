@@ -1,0 +1,39 @@
+@page
+@model SqlServerModel
+@{
+    ViewData["Title"] = "Azure SQL Server";
+}
+<h1>Azure SQL Server</h1>
+<table>
+    @foreach(var student in Model.Students) {
+        <tr>
+            <td>@student.FirstName @student.LastName</td>
+            <td><a class="btn btn-danger" asp-page-handler="DeleteStudent" asp-route-id="@student.Id">X</a></td>
+        </tr>
+    }
+</table>
+
+@if (Model.Students == null || Model.Students.Count == 0) {
+  <br />
+  <h4>No students found</h4>
+}
+
+<br /><br />
+<h2>Add Student</h2>
+
+<form method="post">
+  <div asp-validation-summary="All" class="text-danger"></div>
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <input type="text" name="firstName" id="firstName" asp-for="Student.FirstName">
+  </div>
+  <div class="form-group">
+    <label for="lastName">Last Name</label>
+    <input type="text" name="lastName" id="lastName" asp-for="Student.LastName">
+  </div>
+  <div class="form-group">
+    <label for="school">School</label>
+    <input type="text" name="school" id="school" asp-for="Student.School">
+  </div>
+  <input type="submit" value="Save Student" class="btn btn-primary">
+</form>

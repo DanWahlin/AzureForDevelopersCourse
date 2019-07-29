@@ -1,8 +1,8 @@
-#### Running the Samples
+## Running the Samples
 
 Perform the following steps:
 
-### Create Azure Resources
+## Create Azure Resources
 
 1. Create a new Storage Account in Azure
 1. Add a Storage Table named `customers`

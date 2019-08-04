@@ -1,4 +1,4 @@
-### Create Function Resources
+## Create Function Resources
 
 Perform the steps below to create a functions app as well as a storage account. 
 
@@ -33,14 +33,26 @@ In this example you'll use the same storage account for the functions app and fo
 1. Add a Blob Storage container named `zipped-files` (leave the default value for security)
 1. Add another Blob Storage container named `unzipped-files` (leave the default value for security)
 
-## Run the Function in VS Code
+### Run the Function
 
-### Install and Run the Azure Core Functions Tool with VS Code
+#### Run in VS Code
 
 1. Install the tools from https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#install-the-azure-functions-core-tools
 1. Open a command window in the `Unzipper` folder and run the following command:
 
     `func host start`
+
+### Run in Visual Studio
+
+1. Press `F5`
+
+## Upload a .zip File to a Container
+
+1. Go to the `zipped-files` container in the storage account created above
+1. Upload a .zip file into the container. If you don't have one you can use the one found in `Unzipper/zips`
+1. The console should display the status activity of the unzipping process
+1. Once it's done unzipping go to the `unzipped-files` container and note the files there
+
 
 #### To Debug
 

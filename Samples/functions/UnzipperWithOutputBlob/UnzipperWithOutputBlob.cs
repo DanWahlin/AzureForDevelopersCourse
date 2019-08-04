@@ -13,12 +13,13 @@ using Microsoft.WindowsAzure.Storage;
 
 namespace AzureForDevelopersCourse.Functions
 {
-    public static class Unzipper
+    public static class UnzipperWithOutputBlob
     {
-        [FunctionName("Unzipper")]
+        [FunctionName("UnzipperWithOutputBlob")]
         public static async Task Run(
           [BlobTrigger("zipped-files/{name}", Connection = "unzipperFuncsStorage")] CloudBlockBlob blob, 
           string name, 
+          [Blob("unzipped-files", FileAccess.Write)]CloudBlobContainer unzippedBlobContainer, 
           ILogger log)
         {
             log.LogInformation($"Blob trigger function Processed blob: {name}");
@@ -26,10 +27,10 @@ namespace AzureForDevelopersCourse.Functions
             string unzipperFuncsStorage = Environment.GetEnvironmentVariable("unzipperFuncsStorage");
             string destinationFilesContainer = Environment.GetEnvironmentVariable("destinationFilesContainer");
 
-            try{
+            try {
                 if (name.EndsWith(".zip"))
                 {
-                    await ProcessZip(blob, log, unzipperFuncsStorage, destinationFilesContainer);
+                    await ProcessZip(blob, unzippedBlobContainer, log);
                 }
             }
             catch(Exception ex){
@@ -37,12 +38,8 @@ namespace AzureForDevelopersCourse.Functions
             }            
         }
 
-        private static async Task ProcessZip(CloudBlockBlob blob, ILogger log, string unzipperFuncsStorage, string destinationFilesContainer)
+        private static async Task ProcessZip(CloudBlockBlob blob, CloudBlobContainer unzippedBlobContainer, ILogger log)
         {
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(unzipperFuncsStorage);
-            CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
-            CloudBlobContainer container = blobClient.GetContainerReference(destinationFilesContainer);
-
             using (MemoryStream blobMemStream = new MemoryStream())
             {
                 await blob.DownloadToStreamAsync(blobMemStream);
@@ -61,7 +58,7 @@ namespace AzureForDevelopersCourse.Functions
 
                             if (!String.IsNullOrEmpty(validName))
                             {
-                                CloudBlockBlob blockBlob = container.GetBlockBlobReference(validName);
+                                CloudBlockBlob blockBlob = unzippedBlobContainer.GetBlockBlobReference(validName);
                                 using (var fileStream = entry.Open())
                                 {
                                     await blockBlob.UploadFromStreamAsync(fileStream);
@@ -76,6 +73,5 @@ namespace AzureForDevelopersCourse.Functions
                 }
             }
         }
-        
     }
 }

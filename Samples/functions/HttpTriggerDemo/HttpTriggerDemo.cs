@@ -8,13 +8,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace HttpTriggerExample
+namespace AzureForDevelopersCourse.Functions
 {
-    public static class HttpTriggerDemo
+    public static class AzureForDevelopers
     {
         [FunctionName("HttpTriggerDemo")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Function, "get", "post", "put", "delete", Route = null)] HttpRequest req,
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");

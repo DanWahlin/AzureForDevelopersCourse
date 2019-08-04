@@ -2,7 +2,7 @@
 
 Perform the steps below to create a functions app as well as a storage account. 
 
-Note that if you run this code in a folder where file sync is running (Dropbox, OneDrive, etc.) you may get an error starting the local functions host. Either pause the file sync product or move the `Unzipper` folder to another location outside of the file sync process.
+Note that if you run this code in a folder where file sync is running (Dropbox, OneDrive, etc.) you may get an error starting the local functions host. Either pause the file sync product or move the `UnzipperWithOutputBlob` folder to another location outside of the file sync process.
 
 ### Create a Functions App
 
@@ -38,7 +38,7 @@ In this example you'll use the same storage account for the functions app and fo
 #### Run in VS Code
 
 1. Install the tools from https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#install-the-azure-functions-core-tools
-1. Open a command window in the `Unzipper` folder and run the following command:
+1. Open a command window in the `UnzipperWithOutputBlob` folder and run the following command:
 
     `func host start`
 
@@ -49,7 +49,7 @@ In this example you'll use the same storage account for the functions app and fo
 ## Upload a .zip File to a Container
 
 1. Go to the `zipped-files` container in the storage account created above
-1. Upload a .zip file into the container. If you don't have one you can use the one found in `Unzipper/zips`
+1. Upload a .zip file into the container. If you don't have one you can use the one found in `UnzipperWithOutputBlob/zips`
 1. The console should display the status activity of the unzipping process
 1. Once it's done unzipping go to the `unzipped-files` container and note the files there
 

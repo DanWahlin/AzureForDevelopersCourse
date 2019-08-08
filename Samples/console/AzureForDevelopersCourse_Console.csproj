@@ -12,4 +12,10 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.json" Version="2.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

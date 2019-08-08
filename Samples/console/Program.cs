@@ -15,7 +15,8 @@ namespace AzureForDevelopersCourse_Console
         {
             var builder = new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("appsettings.json");
+                    .AddJsonFile("appsettings.json")
+                    .AddJsonFile("keys.json");
             var configuration = builder.Build();
             MainAsync(configuration).GetAwaiter().GetResult();
         }
@@ -34,7 +35,5 @@ namespace AzureForDevelopersCourse_Console
             Console.ReadLine();
             await messageHandler.CloseAsync();
         }
-
-        
     }
 }

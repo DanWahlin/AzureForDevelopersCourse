@@ -7,7 +7,7 @@ namespace AzureForDevelopersCourse.Repository.ServiceBus
 {
     public interface IAzureServiceBus
     {
-        Task SendMessageAsync(string queueName, string message, string label = null);
+        Task SendMessageAsync(string queueName, string message);
         QueueClient GetQueueClient();
     }
 }

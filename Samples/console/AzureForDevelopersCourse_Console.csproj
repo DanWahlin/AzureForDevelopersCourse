@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="microsoft.azure.servicebus" Version="3.4.0" />
+    <PackageReference Include="Microsoft.Azure.ServiceBus" Version="3.4.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.binder" Version="2.2.4" />
     <PackageReference Include="Microsoft.Extensions.Configuration.json" Version="2.2.0" />

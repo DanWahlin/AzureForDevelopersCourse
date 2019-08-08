@@ -20,13 +20,10 @@ namespace AzureForDevelopersCourse.Repository.ServiceBus
             QueueClient = GetQueueClient();
         }
 
-        public async Task SendMessageAsync(string queueName, string message, string label = null)
+        public async Task SendMessageAsync(string queueName, string message)
         {
             // Message
             Message queueMessage = new Message(Encoding.UTF8.GetBytes(message));
-            if (label != null) {
-                queueMessage.Label = label;
-            }
             queueMessage.ContentType = "text/plain";
 
             //Send

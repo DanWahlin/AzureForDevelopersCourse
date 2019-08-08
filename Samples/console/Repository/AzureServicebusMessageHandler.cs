@@ -40,13 +40,11 @@ namespace AzureForDevelopersCourse_Console
 
         async Task ProcessMessagesAsync(Message message, CancellationToken token)
         {
-            if (message.Label != null &&
-                message.ContentType == null &&
-                message.ContentType.Equals("text/plain", StringComparison.InvariantCultureIgnoreCase))
+            if (message.ContentType.Equals("text/plain", StringComparison.InvariantCultureIgnoreCase))
             {
                 // Process the message
                 Console.WriteLine($"Received message: SequenceNumber: {message.SystemProperties.SequenceNumber} " +
-                "Body: {Encoding.UTF8.GetString(message.Body)}");
+                $"Body: {Encoding.UTF8.GetString(message.Body)}");
 
                 // Complete the message so that it is not received again.
                 // This can be done only if the queueClient is created in ReceiveMode.PeekLock mode (which is default).
